@@ -2,22 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Buy Tshirt</title>
+<title>Income Tax</title>
 </head>
 <body>
 	<form action="DataCollector" method="get">
-		<label>Accessories: 
-		belt<input type="checkbox" name="accessories" value="belt"/> 
-		cap <input type="checkbox" name="accessories" value="cap"/> 
-		hair-band<input type="checkbox" name="accessories" value="band"/></label><br/>
-		<label>Tag Line: <textarea name="tag"></textarea></label><br/>
-		<label>color<select name="color">
-			<option value="Red">Red</option>
-			<option value="Blue">Blue</option>
-			<option value="Black">Black</option>
-		</select></label></br>
-		<label>Chest Pocket: <input type="radio" name="pocket" value="1"/>yes <input type="radio" name="pocket" value="0"/>No </label><br/>
-		<input type="submit" value="submit"/>
+	<legend>Income Tax Form</legend>
+		<label>Name<input type="text" name="name"/></label><br/>
+		<label>Gender: Male<input type="radio" name="gender" value="male"/> Female<input type="radio" name="gender" value="female"/></label><br/>
+		<label>Salary<input type="number" min="0" name="salary"/></label><br/>
+		<label>Tax deductions<input type="number" name="deduction"/></label><br/>
+		<input type="submit" value="Submit Details"/>
 	</form>
 </body>
 </html>
