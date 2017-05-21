@@ -12,7 +12,8 @@ public class MainFrame extends JFrame{
 	private static RepresentativeForm rf;
 	private static RepDetails rd;
     private static Container ct;
-	MainFrame(String s)	{
+
+    MainFrame(String s)	{
 		super(s);
 		cf = new CustomerForm();
 		rf = new RepresentativeForm();
@@ -23,6 +24,7 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 		
 	}
+
 	static void setDefaultFrame()	{
 		ct.removeAll();
 		JButton btn1 = new JButton("Insert Customer");
@@ -32,48 +34,37 @@ public class MainFrame extends JFrame{
 		mainPanel.add(btn1);
 		mainPanel.add(btn2);
 		mainPanel.add(btn3);
-		mainPanel.setLayout(new GridLayout(0,1));
+		mainPanel.setLayout(new GridLayout(3,1));
 		ct.add(mainPanel);
 		ct.revalidate();
 		ct.repaint();
-		btn1.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				ct.removeAll();
-				ct.add(cf);
-				ct.revalidate();
-				ct.repaint();
-			}
-			
-		});
-		btn2.addActionListener(new ActionListener() {
+		btn1.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            ct.removeAll();
+            ct.add(cf);
+            ct.revalidate();
+            ct.repaint();
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				ct.removeAll();
-				ct.add(rf);
-				ct.revalidate();
-				ct.repaint();
-			}
-			
-		});
-		btn3.addActionListener(new ActionListener() {
+		btn2.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            ct.removeAll();
+            ct.add(rf);
+            ct.revalidate();
+            ct.repaint();
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				ct.removeAll();
-				rd.setDetails();
-				ct.add(rd);
-				ct.revalidate();
-				ct.repaint();
-			}
-			
-		});
+        });
+		btn3.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            ct.removeAll();
+            rd.setDetails();
+            ct.add(rd);
+            ct.revalidate();
+            ct.repaint();
+        });
 	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new MainFrame("Forms");

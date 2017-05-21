@@ -11,11 +11,11 @@ import javax.swing.table.DefaultTableModel;
 public class JdbcHelper {
 	// JDBC driver name and database URL
 	   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	   static final String DB_URL = "jdbc:mysql://localhost:3306/representative";
+	   static final String DB_URL = "jdbc:mysql://localhost:3306/javatest";
 
 	   //  Database credentials
 	   static final String USER = "root";
-	   static final String PASS = "3070";
+	   static final String PASS = "elson.1996";
 	   Connection conn;
 	   JdbcHelper()	{
 		   try{
@@ -23,13 +23,10 @@ public class JdbcHelper {
 		      Class.forName(JDBC_DRIVER);
 		      //STEP 3: Open a connection
 		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
-		   }catch(SQLException se){
-		      //Handle errors for JDBC
-		      se.printStackTrace();
-		   }catch(Exception e){
-		      //Handle errors for Class.forName
-		      e.printStackTrace();
-		   }
+		   } catch(Exception e) {
+               //Handle errors for Class.forName
+               e.printStackTrace();
+           }
 	   }
 	   void insertCustomer(int id, String name, String state, double creditLimit, int repNo) throws SQLException	{
 		   String query = "INSERT into Cust VALUES (?,?,?,?,?)";
@@ -67,12 +64,15 @@ public class JdbcHelper {
 		   }
 		   stmt.close();
 	   }
+
 	   protected void finalize()	{
 		   try {
 			conn.close();
+			super.finalize();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	   }
+		} catch (Throwable throwable) {
+           }
+       }
 }

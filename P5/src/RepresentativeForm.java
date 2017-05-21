@@ -1,11 +1,5 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 import java.sql.SQLException;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class RepresentativeForm extends JPanel{
 	private JTextField txtRepNo;
@@ -47,35 +41,27 @@ public class RepresentativeForm extends JPanel{
 		add(btnSubmit);add(btnBack);
 	}
 	void setActions()	{
-		btnSubmit.addActionListener(new ActionListener()	{
+		btnSubmit.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            System.out.println("Submitted");
+            int repNo = Integer.parseInt(txtRepNo.getText());
+            String name = txtRepName.getText();
+            String state = txtRepState.getText();
+            double comm = Double.parseDouble(txtComm.getText());
+            Double rate = Double.parseDouble(txtRepRate.getText());
+            try {
+                db.insertRep(repNo, name, state, comm, rate);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } finally{
+                MainFrame.setDefaultFrame();
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Submitted");
-				int repNo = Integer.parseInt(txtRepNo.getText());
-				String name = txtRepName.getText();
-				String state = txtRepState.getText();
-				double comm = Double.parseDouble(txtComm.getText());
-				Double rate = Double.parseDouble(txtRepRate.getText());
-				try {
-					db.insertRep(repNo, name, state, comm, rate);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} finally{
-					MainFrame.setDefaultFrame();
-				}
-			}
-		});
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				MainFrame.setDefaultFrame();
-			}
-			
-		});
+		btnBack.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            MainFrame.setDefaultFrame();
+        });
 	}
 }

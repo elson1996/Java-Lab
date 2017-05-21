@@ -1,11 +1,6 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class CustomerForm extends JPanel{
 	private JTextField txtCustId;
@@ -13,13 +8,9 @@ public class CustomerForm extends JPanel{
 	private JTextField txtCustState;
 	private JTextField txtCreditLimit;
 	private JTextField txtCustRepNo;
-	private JLabel lblCustId;
-	private JLabel lblCustName;
-	private JLabel lblCustState;
-	private JLabel lblCreditLimit;
-	private JLabel lblCustRepNo;
-	private JButton btnSubmit;
+    private JButton btnSubmit;
 	private JButton btnBack;
+
 	JdbcHelper db;
 	CustomerForm()	{
 		db = new JdbcHelper();
@@ -27,16 +18,17 @@ public class CustomerForm extends JPanel{
 		setActions();
 	}
 	void setupLayout()	{
-		lblCustId = new JLabel("Customer ID: ");
-		lblCustName = new JLabel("Customer Name: ");
-		lblCustState = new JLabel("Customer State: ");
-		lblCreditLimit = new JLabel("Customer Credit Limit: ");
-		lblCustRepNo = new JLabel("Representative Number: ");
+        JLabel lblCustId = new JLabel("Customer ID: ");
+        JLabel lblCustName = new JLabel("Customer Name: ");
+        JLabel lblCustState = new JLabel("Customer State: ");
+        JLabel lblCreditLimit = new JLabel("Customer Credit Limit: ");
+        JLabel lblCustRepNo = new JLabel("Representative Number: ");
 		txtCustId = new JTextField(10);
 		txtCustName = new JTextField(10);
 		txtCustState = new JTextField(10);
 		txtCreditLimit = new JTextField(10);
 		txtCustRepNo = new JTextField(10);
+
 		btnSubmit = new JButton("Submit");
 		btnBack = new JButton("Back");
 		add(lblCustId);add(txtCustId);
@@ -45,34 +37,29 @@ public class CustomerForm extends JPanel{
 		add(lblCreditLimit);add(txtCreditLimit);
 		add(lblCustRepNo);add(txtCustRepNo);
 		add(btnSubmit);add(btnBack);
+		setLayout(new GridLayout(6,2));
 	}
 	void setActions()	{
-		btnSubmit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
+		btnSubmit.addActionListener(e -> {
 /* TODO Auto-generated method stub */
-				System.out.println("Submitted");
-				int id = Integer.parseInt(txtCustId.getText());
-				String name1 = txtCustName.getText();
-				String state = txtCustState.getText();
-				double creditLimit = Double.parseDouble(txtCreditLimit.getText());
-				int repNo = Integer.parseInt(txtCustRepNo.getText());
-				try {
-					db.insertCustomer(id, name1, state, creditLimit, repNo);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} finally {
-					MainFrame.setDefaultFrame();
-				}
-			}
-		});
-		btnBack.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				MainFrame.setDefaultFrame();
-			}
-		});
+            System.out.println("Submitted");
+            int id = Integer.parseInt(txtCustId.getText());
+            String name1 = txtCustName.getText();
+            String state = txtCustState.getText();
+            double creditLimit = Double.parseDouble(txtCreditLimit.getText());
+            int repNo = Integer.parseInt(txtCustRepNo.getText());
+            try {
+                db.insertCustomer(id, name1, state, creditLimit, repNo);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } finally {
+                MainFrame.setDefaultFrame();
+            }
+        });
+		btnBack.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            MainFrame.setDefaultFrame();
+        });
 	}
 }
